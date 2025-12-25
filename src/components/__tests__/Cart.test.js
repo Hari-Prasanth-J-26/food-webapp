@@ -1,4 +1,5 @@
-import { BrowserRouter } from "react-router";
+import { BrowserRouter } from "react-router-dom";
+
 import RestaurantMenu from "../RestaurantMenu";
 import Header from "../Header";
 import { fireEvent, render, screen } from "@testing-library/react";

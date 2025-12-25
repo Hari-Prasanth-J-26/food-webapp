@@ -1,4 +1,5 @@
-import { BrowserRouter } from "react-router";
+import { BrowserRouter } from "react-router-dom";
+
 import Body from "../Body";
 import { fireEvent, render, screen } from "@testing-library/react";
 import MOCK_DATA from "../mocks/mockDataResList.json"

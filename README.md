@@ -18,4 +18,4 @@ A responsive React-based food ordering application built with React, Redux Toolk
 * Tailwind CSS
 * Lucide-react
 
-  Link: https://hp-food.netlify.app/
+Link: https://hp-food.netlify.app/
