@@ -11,17 +11,23 @@ const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
     }
 
     return (
-        <div>
-            <div className="mx-auto w-11/12 md:w-10/12 lg:w-7/12 my-4 bg-gray-100 p-4 shadow-lg">
-                <div className="flex justify-between cursor-pointer"
+        <div className="mb-4">
+            <div className="bg-white px-6 py-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div className="flex justify-between items-center cursor-pointer select-none"
                     onClick={handleClick}
                 >
-                    <span className="font-bold text-md md:text-xl lg:text-xl">
-                        {data.title} ({data.itemCards?.length || 0})
+                    <span className="font-extrabold text-gray-800 text-lg">
+                        {data.title} <span className="text-gray-400 ml-2 font-medium">({data.itemCards?.length || 0})</span>
                     </span>
-                    <span className="text-2xl">{showItems ? symbolUp : symbolDown}</span>
+                    <span className={`text-2xl text-gray-400 transition-transform duration-300 ${showItems ? 'rotate-180' : ''}`}>
+                        {symbolDown}
+                    </span>
                 </div>
-                {showItems && <ItemList items={data.itemCards || []} />}
+                {showItems && (
+                    <div className="mt-4 pt-4 border-t border-gray-50">
+                        <ItemList items={data.itemCards || []} />
+                    </div>
+                )}
             </div>
         </div>
     )

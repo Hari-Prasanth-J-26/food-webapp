@@ -20,24 +20,44 @@ const RestaurantCart = (props) => {
     return (
         <div
             data-testid="resCard"
-            className="w-full m-4 p-4 bg-white rounded-lg shadow-md transition-transform duration-300 hover:scale-90"
+            className="flex flex-col h-full bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
         >
-            <img
-                className="rounded-lg w-full h-40 object-cover"
-                alt="res-logo"
-                src={CDN_URL + cloudinaryImageId}
-            />
-            <h3 className="font-bold py-2 text-lg">{name}</h3>
-            <h4>{cuisines?.join(", ")}</h4>
-            <h4>{avgRating} ⭐️</h4>
-            <h4>{costForTwo}</h4>
-            <h4>{sla?.deliveryTime} mins 🛵</h4>
+            <div className="relative w-full aspect-[4/3] overflow-hidden">
+                <img
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                    alt={name}
+                    src={CDN_URL + cloudinaryImageId}
+                    onError={(e) => {
+                        e.target.src = "https://www.foodiesfeed.com/wp-content/uploads/2023/06/pouring-honey-on-pancakes.jpg";
+                    }}
+                />
+                <div className="absolute top-2 right-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-gray-800 shadow-sm">
+                    {sla?.deliveryTime} mins
+                </div>
+            </div>
 
-            {/* Footer Button */}
-            <div className="mt-4">
-                <button className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition">
-                    Order Now
-                </button>
+            <div className="flex flex-col flex-grow p-4">
+                <div className="flex justify-between items-start mb-1">
+                    <h3 className="font-bold text-gray-800 text-lg line-clamp-1 flex-1">{name}</h3>
+                    <span className={`ml-2 px-2 py-0.5 rounded text-xs font-bold ${avgRating >= 4 ? 'bg-amber-100 text-amber-700' : 'bg-orange-100 text-orange-700'}`}>
+                        {avgRating} ⭐️
+                    </span>
+                </div>
+
+                <p className="text-sm text-gray-500 mb-2 line-clamp-1">
+                    {cuisines?.join(", ")}
+                </p>
+
+                <div className="flex justify-between items-center text-sm font-medium text-gray-700 mt-2">
+                    <span>{costForTwo}</span>
+                </div>
+
+                {/* Footer Button - Pushed to bottom */}
+                <div className="mt-auto pt-4">
+                    <button className="w-full bg-green-600 text-white font-bold py-2.5 rounded-lg hover:bg-green-700 active:scale-95 transition-all shadow-md shadow-green-100 uppercase tracking-wide text-sm sm:text-base">
+                        Order Now
+                    </button>
+                </div>
             </div>
         </div>
 

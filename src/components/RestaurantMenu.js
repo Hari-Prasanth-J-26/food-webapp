@@ -25,20 +25,32 @@ const RestaurantMenu = () => {
     ) || [];
 
     return (
-        <div className="text-center">
-            <h1 className="font-bold my-6 text-lg md:text-2xl lg:text-2xl">{name}</h1>
-            <h4 className="font-bold text-md md:text-xl lg:text-xl">{cuisines?.join(", ") || ""} - {costForTwoMessage}</h4>
-            {categories?.map((category, index) =>
-                //controlled component
-                <RestaurantCategory
-                    key={category?.card?.card?.title}
-                    data={category?.card?.card}
-                    showItems={index === showIndex ? true : false}
-                    //setShowIndex={()=> setShowIndex(index)}
-                    setShowIndex={() => setShowIndex(index === showIndex ? null : index)}
-                    count
-                />
-            )}
+        <div className="w-full bg-gray-50 min-h-screen py-8">
+            <div className="max-w-[800px] mx-auto px-4 sm:px-8">
+                <div className="text-center mb-10 pb-8 border-b border-gray-200">
+                    <h1 className="font-extrabold text-3xl md:text-4xl text-gray-800 mb-2">{name}</h1>
+                    <p className="text-gray-500 font-medium text-lg italic">
+                        {cuisines?.join(", ") || ""} • {costForTwoMessage}
+                    </p>
+                    <div className="mt-4 flex justify-center items-center gap-4">
+                        <span className="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-sm font-bold shadow-sm">
+                            {totalRatingsString}
+                        </span>
+                    </div>
+                </div>
+
+                <div className="space-y-4">
+                    {categories?.map((category, index) =>
+                        //controlled component
+                        <RestaurantCategory
+                            key={category?.card?.card?.title}
+                            data={category?.card?.card}
+                            showItems={index === showIndex ? true : false}
+                            setShowIndex={() => setShowIndex(index === showIndex ? null : index)}
+                        />
+                    )}
+                </div>
+            </div>
         </div>
     )
 }
